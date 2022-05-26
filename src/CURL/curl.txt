@@ -1,0 +1,122 @@
+{
+	"info": {
+		"_postman_id": "53e29438-5250-4864-a3e5-5be1a62d3fa2",
+		"name": "CRUD NEST POSTGRES",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18233726"
+	},
+	"item": [
+		{
+			"name": "http://localhost:3003/add",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Sebastian\",\r\n    \"apellido\": \"Uribe\",\r\n    \"edad\": 35,\r\n    \"telefono\": \"123456789\",\r\n    \"email\": \"test@test.cl\",\r\n    \"comentario\": \"texto\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3003/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3003/find",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 50\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3003/find",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"find"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3003/delete",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 33\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3003/delete",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"delete"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3003/update",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n{\r\n    \"id\": 28,\r\n    \"nombre\": \"Eve\",\r\n    \"apellido\": \"Uribe\",\r\n    \"edad\": 35,\r\n    \"telefono\": \"123456789\",\r\n    \"email\": \"test@test.cl\",\r\n    \"comentario\": \"texto\" \r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3003/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"update"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

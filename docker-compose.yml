@@ -1,0 +1,24 @@
+services:
+  postgres:
+    container_name: postgres_crud_test
+    image: postgres:latest
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DATABASE=postgres
+      - POSTGRES_SCHEMA=crud
+      - PGDATA=/tmp
+    logging:
+      options:
+        max-size: 10m
+        max-file: "3"
+    ports:
+      - '5435:5432'
+    volumes:
+      - ./data/docker/postgresql/data:/var/lib/postgresql/data
+      # - ./postgres-data:/var/lib/postgresql/data
+      # copy the sql script to create tables
+      #- ./sql/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
+      # copy the sql script to fill tables
+      #- ./sql/fill_tables.sql:/docker-entrypoint-initdb.d/fill_tables.sql

@@ -1,0 +1,10 @@
+{
+    "user": {
+        "nombre": "Sebastian",
+        "apellido": "Uribe",
+        "edad": 35,
+        "telefono": "123456789",
+        "email": "test@test.cl",
+        "comentario": "texto"
+    }
+}
