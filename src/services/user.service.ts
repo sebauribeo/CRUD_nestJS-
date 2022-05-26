@@ -16,7 +16,7 @@ export class UserService {
       if (!response) {
         return {
           status: HttpStatus.BAD_REQUEST,
-          details: `ID: ${id} NOT FIND`,
+          details: DbStatusKeys.FAIL_FIND_ID + id,
         };
       } else {
         return {
@@ -43,10 +43,10 @@ export class UserService {
           details: DbStatusKeys.UPDATE,
         };
       } else {
-        this.logger.debug(DbStatusKeys.FAIL_FIND_ID_TO_UPDATE + data.id);
+        this.logger.debug(DbStatusKeys.FAIL_FIND_ID + data.id);
         return {
           status: HttpStatus.BAD_REQUEST,
-          details: DbStatusKeys.FAIL_FIND_ID_TO_UPDATE + data.id,
+          details: DbStatusKeys.FAIL_FIND_ID + data.id,
         };
       }
     } catch (e) {
@@ -86,10 +86,10 @@ export class UserService {
           details: DbStatusKeys.DELETE + id,
         };
       } else {
-        this.logger.debug(DbStatusKeys.FAIL_FIND_ID_TO_DELETE + id);
+        this.logger.debug(DbStatusKeys.FAIL_FIND_ID + id);
         return {
           status: HttpStatus.NOT_FOUND,
-          details: DbStatusKeys.FAIL_FIND_ID_TO_DELETE + id,
+          details: DbStatusKeys.FAIL_FIND_ID + id,
         };
       }
     } catch (e) {
