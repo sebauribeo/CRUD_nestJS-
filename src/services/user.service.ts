@@ -12,20 +12,18 @@ export class UserService {
   async selectUser(id: any) {
     try {
       const response = await this.documentRepository.findOne(id);
-      this.logger.debug(DbStatusKeys.SELECT);
       if (!response) {
-        return {
-          status: HttpStatus.BAD_REQUEST,
-          details: DbStatusKeys.FAIL_FIND_ID + id,
-        };
+        this.logger.debug(DbStatusKeys.FAIL_TO_UPDATE);
+        throw new Error(DbStatusKeys.FAIL_FIND_ID + id);
       } else {
+        this.logger.debug(DbStatusKeys.SELECT);
         return {
           status: HttpStatus.OK,
-          details: response,
+          user: response,
         };
       }
     } catch (e) {
-      this.logger.debug(DbStatusKeys.FAIL_TO_SELECT);
+      this.logger.debug(DbStatusKeys.FAIL_FIND_ID + id);
       return {
         status: HttpStatus.BAD_REQUEST,
         details: e.message,
@@ -44,10 +42,7 @@ export class UserService {
         };
       } else {
         this.logger.debug(DbStatusKeys.FAIL_FIND_ID + data.id);
-        return {
-          status: HttpStatus.BAD_REQUEST,
-          details: DbStatusKeys.FAIL_FIND_ID + data.id,
-        };
+        throw new Error(DbStatusKeys.FAIL_FIND_ID + data.id);
       }
     } catch (e) {
       this.logger.debug(DbStatusKeys.FAIL_TO_UPDATE);
@@ -67,7 +62,6 @@ export class UserService {
         details: DbStatusKeys.INSERT + response.id,
       };
     } catch (e) {
-      console.log(e.message);
       this.logger.debug(DbStatusKeys.FAIL_TO_INSERT);
       return {
         status: HttpStatus.BAD_REQUEST,
@@ -80,17 +74,14 @@ export class UserService {
     try {
       const response = await this.documentRepository.delete(id);
       if (response.affected === 1) {
-        this.logger.debug(DbStatusKeys.DELETE + id);
+        this.logger.verbose(DbStatusKeys.DELETE + id);
         return {
           status: HttpStatus.OK,
           details: DbStatusKeys.DELETE + id,
         };
       } else {
         this.logger.debug(DbStatusKeys.FAIL_FIND_ID + id);
-        return {
-          status: HttpStatus.NOT_FOUND,
-          details: DbStatusKeys.FAIL_FIND_ID + id,
-        };
+        throw new Error(DbStatusKeys.FAIL_FIND_ID + id);
       }
     } catch (e) {
       this.logger.debug(DbStatusKeys.FAIL_TO_DELETE);
